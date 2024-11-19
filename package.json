@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://Vasyl24.github.io/book-shop",
+  "homepage": "https://II-777.github.io/project-papyrus8",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /book-shop/"
+    "build": "parcel build src/*.html --public-url /project-papyrus8/"
   },
   "repository": {
     "type": "git",

@@ -4,23 +4,34 @@ let startCategory = 0;
 let endCategory;
 let options = {
   root: null,
-  rootMargin: '400px',
+  rootMargin: '100px',
   threshold: 1.0,
 };
-let observer = new IntersectionObserver(scrollByCategoriesDown, options);
-function createHomeMainSection() {
+export let observer = new IntersectionObserver(scrollByCategoriesDown, options);
+export let bestsellers = [];
+refs.categoriesContainer.addEventListener('click', onAllCategoriesClick);
+function onAllCategoriesClick(evt) {
+  if (!evt.target.classList.contains('js-all-categories')) {
+    return;
+  }
+  refs.homeCategoryBooksList.innerHTML = '';
+  refs.homeMainTitle.textContent = 'Best sellers';
+  refs.homeMainTitleAccent.textContent = 'Books';
+  bestSellersToRender();
+}
+function bestSellersToRender() {
   getTopBooks()
     .then(data => {
+      bestsellers = data;
       refs.homeCategoryBooksList.insertAdjacentHTML(
         'beforeend',
-        createCategoryBooksList(data)
+        createCategoryBooksList(bestsellers)
       );
       observer.observe(refs.homeObserverTarget);
     })
     .catch(err => console.log(err));
 }
-createHomeMainSection();
-
+bestSellersToRender();
 function createCategoryBooksList(bestSellers) {
   endCategory = bestSellers.length;
   return bestSellers
@@ -39,18 +50,19 @@ function createBooksList(books) {
   let bookTitleLength = 30;
   if (window.screen.width >= 768 && window.screen.width < 1440) {
     booksToRender = 3;
-    bookTitleLength = 25;
+    bookTitleLength = 23;
   } else if (window.screen.width >= 1440) {
     booksToRender = 5;
-    bookTitleLength = 20;
+    bookTitleLength = 19;
   }
+
   return books
     .slice(0, booksToRender)
     .map(({ _id, author, book_image, title }) => {
       title.length > bookTitleLength
         ? (title = title.slice(0, bookTitleLength - 3) + '...')
         : title;
-      return `  <li class="home-books-item" data-id=${_id}>
+      return `  <li class="home-books-item js-home-books-item" data-id=${_id}>
                 <img class="home-books-book-picture" src="${book_image}" alt="${title}" />
                 <p class="home-books-book-title">${title}</p>
                 <p class="home-books-book-author">${author}</p>
@@ -61,10 +73,10 @@ function createBooksList(books) {
 
 function scrollByCategoriesDown() {
   startCategory += 4;
-  createHomeMainSection();
-  if (startCategory >= endCategory) {
-    refs.homeMainScrollUp.style.display = 'flex';
-  }
+  refs.homeCategoryBooksList.insertAdjacentHTML(
+    'beforeend',
+    createCategoryBooksList(bestsellers)
+  );
 }
 refs.homeMainScrollUp.addEventListener('click', scrollByCategoriesUp);
 function scrollByCategoriesUp() {
