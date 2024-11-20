@@ -62,10 +62,10 @@ function createBooksList(books) {
       title.length > bookTitleLength
         ? (title = title.slice(0, bookTitleLength - 3) + '...')
         : title;
-      return `  <li class="home-books-item js-home-books-item" data-id=${_id}>
-                <img class="home-books-book-picture" src="${book_image}" alt="${title}" />
-                <p class="home-books-book-title">${title}</p>
-                <p class="home-books-book-author">${author}</p>
+      return `  <li class="home-books-item js-home-books-item js-target" data-id=${_id}>
+                <img class="home-books-book-picture js-target" src="${book_image}" alt="${title}" />
+                <p class="home-books-book-title js-target">${title}</p>
+                <p class="home-books-book-author js-target">${author}</p>
               </li>`;
     })
     .join('');

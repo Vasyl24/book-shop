@@ -128,9 +128,20 @@ body.dark-theme .home-books-book-title {
   letter-spacing: -0.01em;
   text-transform: uppercase;
 }
+
+.home-see-more-btn:hover {
+  background-color: var(--accent-color);
+  transition: var(--animation);
+}
+
+body.dark-theme .home-see-more-btn:hover {
+  background-color: var(--accent-color);
+}
+
 body.dark-theme .home-see-more-btn {
   color: #ffffff;
   background-color: #202024;
+  transition: var(--animation);
 }
 .home-main-scroll-up {
   cursor: pointer;

@@ -6,7 +6,6 @@ const book = document.querySelector('.js-home-category-books-list');
 book.addEventListener('click', onClick);
 
 function onClick(evt) {
-  //   console.log(evt.target);
   const bookCard = evt.target.parentNode;
   const bookCardId = bookCard.dataset.id;
 
@@ -37,27 +36,3 @@ function onClick(evt) {
     }
   });
 }
-
-//   return bookCardId.map(
-//     ({
-//       book_image,
-//       title,
-//       author,
-//       amazon_product_url,
-//       book_uri,
-//       buy_links,
-//     }) => {
-// return getBookId(bookCardId).then(book => {
-
-// function getDetails(id) {
-//   getBookId(id).then(book => {
-//     book.map({
-//       book_image,
-//       title,
-//       author,
-//       amazon_product_url,
-//       book_uri,
-//       buy_links,
-//     });
-//   });
-// }

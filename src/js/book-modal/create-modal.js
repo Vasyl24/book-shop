@@ -5,11 +5,11 @@ import icon from '../../images/icon.svg';
 function createMarkup(product) {
   const instance = basicLightbox.create(
     `<div class="book-modal">
-    <img src="${product.book_image}" alt="${product.title}" class="book-modal-img"/>
+    <img src="${product.book_image}" alt="${product.title}" class="book-modal-img js-target"/>
     <div class='book-modal-details'>
-        <h2 class="book-modal-title">${product.title}</h2>
-        <h3 class="book-modal-author">${product.author}</h3>
-        <p class='book-modal-desc'>${product.description}</p>
+        <h2 class="book-modal-title js-target">${product.title}</h2>
+        <h3 class="book-modal-author js-target">${product.author}</h3>
+        <p class='book-modal-desc js-target'>${product.description}</p>
         <ul class='icon-book-modal-list'>
         <li>
             <a href="${product.buy_links[0].url}" target="_blank">
@@ -29,7 +29,7 @@ function createMarkup(product) {
         </ul>
     </div>
     <button class='book-modal-btn js-add' id='js-book-modal-btn'></button>
-    <p class='book-modal-buy'>Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>
+    <p class='book-modal-buy' style="display: none">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>
     <button class='book-modal-close' id='js-book-modal-btn-close'>
     <svg class='icon-book-modal-close'><use href='${icon}#icon-closeCross'></use></svg>
     </button>
